@@ -1,0 +1,28 @@
+{
+  "name": "hubot-radbus",
+  "version": "0.1.0",
+  "description": "RadBus API integration for Hubot",
+  "main": "index.coffee",
+  "scripts": {
+    "test": "script/test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RadBus/hubot-radbus.git"
+  },
+  "keywords": [
+    "hubot",
+    "hubot-scripts",
+    "RadBus",
+    "API"
+  ],
+  "author": "twistedstream",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RadBus/hubot-radbus/issues"
+  },
+  "homepage": "https://github.com/RadBus/hubot-radbus",
+  "dependencies": {
+    "coffee-script": "^1.8.0"
+  }
+}
