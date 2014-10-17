@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/RadBus/hubot-radbus",
   "dependencies": {
-    "coffee-script": "^1.8.0"
+    "coffee-script": "^1.8.0",
+    "q": "^1.0.1"
   }
 }
