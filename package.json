@@ -1,6 +1,6 @@
 {
   "name": "hubot-radbus",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "RadBus API integration for Hubot",
   "main": "index.coffee",
   "scripts": {
@@ -24,6 +24,8 @@
   "homepage": "https://github.com/RadBus/hubot-radbus",
   "dependencies": {
     "coffee-script": "^1.8.0",
-    "q": "^1.0.1"
+    "moment-timezone": "^0.2.2",
+    "q": "^1.0.1",
+    "qs": "^2.2.4"
   }
 }
