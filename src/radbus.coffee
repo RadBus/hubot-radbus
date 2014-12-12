@@ -33,6 +33,7 @@ callRadBus = (msg, endpoint, authValue) ->
 
   headers =
     Accept: 'application/json'
+    'API-Key': process.env.HUBOT_RADBUS_API_KEY
   if authValue then headers['Authorization'] = authValue
 
   d = Q.defer()

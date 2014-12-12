@@ -24,6 +24,7 @@ Then add **hubot-radbus** to your `external-scripts.json`:
 
 * **HUBOT_RADBUS_TIMEZONE** - Set to `America/Chicago` since RadBus only supports the Twin Cities metro area, which is in the Chicago timezone
 * **HUBOT_RADBUS_API_BASE_URL** - Set to `https://api.radbus.io/v1`
+* **HUBOT_RADBUS_API_KEY** - Set to the an API key that has been registered to your instance of Hubot
 
 ## Commands
 
