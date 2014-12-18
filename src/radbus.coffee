@@ -106,7 +106,7 @@ getRadBusUserData = (robot, userName) ->
   userData
 
 ensureAuthToken = (robot, msg, userData, logPrefix) ->
-  if userData.authValue #and moment().isBefore(userData.authExpires)
+  if userData.authValue
     Q.resolve()
   else
     console.log "#{logPrefix} Calling RadBus API to get the RadBus API's Google API client ID & secret..."
@@ -118,7 +118,6 @@ ensureAuthToken = (robot, msg, userData, logPrefix) ->
         console.log "#{logPrefix} Done. Refresh token expires in #{authTokenInfo.expires_in} seconds."
 
         userData.authValue = "#{authTokenInfo.token_type} #{authTokenInfo.access_token}"
-        #userData.authExpires = moment().add(authTokenInfo.expires_in, 'seconds').format()
         robot.brain.save()
 
         Q.resolve()
@@ -170,7 +169,7 @@ module.exports = (robot) ->
       logPrefix = "#{LOG_PREFIX}(@#{userName}):"
 
       userData = getRadBusUserData robot, userName
-      if !userData or !userData.refreshToken
+      if !userData.refreshToken
         msg.send "Sorry #{userName}, I can't get at your bus schedule until you give me your RadBus API application token.\n" +
                  "Do this:\n" +
                  "1. Go to https://www.radbus.io/app-token.html to obtain a token.\n" +
@@ -206,7 +205,7 @@ module.exports = (robot) ->
 
                 formattedDeparture =
                   time: departureTime.format 'LT'
-                  wait: wait + " minute" + (if wait isnt 1 then "s")
+                  wait: wait + " minute" + (if wait is 1 then "" else "s")
                   route: departure.route.id + (if departure.route.terminal then "-#{departure.route.terminal}" else '')
                   departure: departure.stop.description
                   locationLink: ''
@@ -231,3 +230,4 @@ module.exports = (robot) ->
 
         chain.fail (err) ->
           console.error "#{logPrefix} Something got borked: #{err.stack || util.inspect(err, depth: null)}"
+          Q.reject err
