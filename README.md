@@ -2,7 +2,7 @@
 
 **RadBus API integration for Hubot**
 
-[![Build Status](https://travis-ci.org/twistedstream/hubot-radbus.svg?branch=master)](https://travis-ci.org/twistedstream/hubot-radbus)
+[![Build Status](https://travis-ci.org/RadBus/hubot-radbus.svg?branch=master)](https://travis-ci.org/RadBus/hubot-radbus)
 
 Reports to the current user what their upcoming bus times are using the RadBus API.  If it's AM, they get times for their buses heading into the office.  Likewise, if it's PM, they get times for buses that will take them home.
 
