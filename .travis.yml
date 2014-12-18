@@ -5,7 +5,7 @@ deploy:
   provider: npm
   email: peter@twistedstream.com
   api_key:
-    secure: l2yoeQUCu6ZGVPQ8m9HaAjLqfezAUyfv2Mdqulr4XGiwavNhlUYL0cS45s+6wzrfIW0t/GnZwJJ1XZDV8M+pydgSTkSh9UfQZbRf6H+j6HNFVWtP+VW//GNmObfOP5HuitsE1/gl8hM2CGy/MFZ7yGtW4oNmOvn6LyPyKo+qtJ4=
+    secure: LnViIuUtdZIrWbd4tFDmua6TZGdqqrDVt4HIUb5RD0IJEA5K6E5sdFka6Vw6R+WuUecB8IjMcvinDQJUQVF/4imreM7iRG4rRglZzUQoZzhFcaJvgNE5lmgcYQ1nX2Mnt+mFDqlfewMxMcTVtpN7mDF53DyH6H/HTHdGA8LkWGM=
   on:
     tags: true
-    all_branches: true
+    repo: RadBus/hubot-radbus
