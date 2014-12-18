@@ -9,3 +9,4 @@ deploy:
   on:
     tags: true
     repo: RadBus/hubot-radbus
+    all_branches: true
