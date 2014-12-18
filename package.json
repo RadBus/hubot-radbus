@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/RadBus/hubot-radbus",
   "dependencies": {
+    "chalk": "^0.5.1",
     "coffee-script": "^1.8.0",
     "moment-timezone": "^0.2.2",
     "q": "^1.0.1",

@@ -12,6 +12,7 @@ Q = require 'q'
 QS = require 'querystring'
 util = require 'util'
 moment = require 'moment-timezone'
+chalk = require 'chalk'
 
 LOG_PREFIX = 'BUS'
 
@@ -90,8 +91,6 @@ shortenUrl = (msg, longUrl) ->
 getRadBusUserData = (robot, userName) ->
   radbus = robot.brain.get 'radbus'
 
-  console.log "radbus = #{util.inspect(radbus, depth: null)}"
-
   if !radbus
     radbus = {}
     robot.brain.set 'radbus', radbus
@@ -109,13 +108,13 @@ ensureAuthToken = (robot, msg, userData, logPrefix) ->
   if userData.authValue
     Q.resolve()
   else
-    console.log "#{logPrefix} Calling RadBus API to get the RadBus API's Google API client ID & secret..."
+    console.log chalk.blue("#{logPrefix} Calling RadBus API to get the RadBus API's Google API client ID & secret...")
     callRadBus(msg, '/oauth2').then (oAuth2Info) ->
-      console.log "#{logPrefix} Done. oAuth2Info.client_id = #{oAuth2Info.client_id}"
+      console.log chalk.blue("#{logPrefix} Done. oAuth2Info.client_id = #{oAuth2Info.client_id}")
 
-      console.log "#{logPrefix} Getting new auth token from user's refresh token..."
+      console.log chalk.blue("#{logPrefix} Getting new auth token from user's refresh token...")
       getAuthToken(msg, oAuth2Info, userData.refreshToken).then (authTokenInfo) ->
-        console.log "#{logPrefix} Done. Refresh token expires in #{authTokenInfo.expires_in} seconds."
+        console.log chalk.blue("#{logPrefix} Done. Refresh token expires in #{authTokenInfo.expires_in} seconds.")
 
         userData.authValue = "#{authTokenInfo.token_type} #{authTokenInfo.access_token}"
         robot.brain.save()
@@ -129,7 +128,7 @@ getDepartures = (robot, msg, userData, logPrefix) ->
     # get new auth token if the current one has expired, then attempt to get departures again
     .fail (err) ->
       if err.statusCode is 401
-        console.log "#{logPrefix} User's auth token has expired.  Obtaining a fresh one..."
+        console.log chalk.yellow("#{logPrefix} User's auth token has expired.  Obtaining a fresh one...")
 
         delete userData.authValue
         ensureAuthToken(robot, msg, userData, logPrefix).then ->
@@ -179,10 +178,10 @@ module.exports = (robot) ->
         msg.send "Hey @#{userName}, give me a moment to look up those bus depatures..."
 
         chain = ensureAuthToken(robot, msg, userData, logPrefix).then ->
-          console.log "#{logPrefix} Getting user's departures..."
+          console.log chalk.blue("#{logPrefix} Getting user's departures...")
 
           getDepartures(robot, msg, userData, logPrefix).then (departures) ->
-            console.log "#{logPrefix} Done. API returned #{departures.length} departures."
+            console.log chalk.blue("#{logPrefix} Done. API returned #{departures.length} departures.")
 
             #if user specified a route/terminal filter, filter out departures that don't match
             if arg
@@ -191,7 +190,7 @@ module.exports = (robot) ->
               terminalFilter = match[2]
               if terminalFilter then terminalFilter = terminalFilter.toUpperCase()
 
-              console.log "#{logPrefix} Filtering depatures by route #{routeFilter}" + if terminalFilter then " and terminal #{terminalFilter}" else ""
+              console.log chalk.blue("#{logPrefix} Filtering depatures by route #{routeFilter}" + if terminalFilter then " and terminal #{terminalFilter}" else "")
 
               departures = departures.filter (departure) ->
                 departure.route.id is routeFilter and (!terminalFilter or departure.route.terminal is terminalFilter)
@@ -229,5 +228,5 @@ module.exports = (robot) ->
                 msg.send message
 
         chain.fail (err) ->
-          console.error "#{logPrefix} Something got borked: #{err.stack || util.inspect(err, depth: null)}"
+          console.error chalk.red("#{logPrefix} Something got borked: #{err.stack || util.inspect(err, depth: null)}")
           Q.reject err
