@@ -1,6 +1,6 @@
 {
   "name": "hubot-radbus",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "RadBus API integration for Hubot",
   "main": "index.coffee",
   "scripts": {
