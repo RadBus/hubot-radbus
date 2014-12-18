@@ -29,12 +29,13 @@ Then add **hubot-radbus** to your `external-scripts.json`:
 ## Commands
 
 ```
-hubot bus token {token} - sets your application token so Hubot can call the RadBus API
-hubot bus me - returns your upcoming bus schedule (to work if its AM, to home if PM)
+hubot bus token {token} - Sets your application token (refresh token) so Hubot can call the RadBus API from the server-side on your behalf.
+hubot bus me [route] - Returns your upcoming bus schedule (to work if its AM, to home if PM).  Optionally you can specify a route and it will only reply with departures from that route.
+hubot bus {user} [route] - Same as 'bus me' but for a different Hubot user.
 ```
 
-- Before `bus me` will return anything useful for a given user, configuration values need to be set.  The easiest way to do that is to go build your personalized schedule using a RadBus app (for example: https://www.radbus.io).
-- Before Hubot will be allowed to make API calls on behalf of your user you need to aquire an application token (otherwise known as a 'refresh token') and register it with Hubot (see `bus token` command above).
+- Before `bus me` will return anything useful, it needs to know your bus schedule.  The easiest way to do that is to go build your personalized schedule using a RadBus app (for example: https://www.radbus.io).
+- Before Hubot will be allowed to make API calls on behalf of your user you need to aquire an application token (otherwise known as a 'refresh token') and register it with Hubot (see `bus token` command above).  If you don't have a registered application token, Hubot will tell you what you need to do to get one.
 
 ## Example Interactions
 
