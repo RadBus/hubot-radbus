@@ -184,8 +184,8 @@ describe "radbus package", ->
 
         @robot.doRespond('bus me').then ->
           expect(msg.send).to.have.been.calledWithMatch /here are your next bus times/i
-          expect(msg.send).to.have.been.calledWithMatch /\d\d\:\d\d [AP]M \(15 minutes\)\: 42-B @ 1st Ave and Main St/i
-          expect(msg.send).to.have.been.calledWithMatch /\d\d\:\d\d [AP]M \(30 minutes\)\: 43 @ 2nd Ave and Main St/i
+          expect(msg.send).to.have.been.calledWithMatch /\d{1,2}\:\d{1,2} [AP]M \(15 minutes\)\: 42-B @ 1st Ave and Main St/i
+          expect(msg.send).to.have.been.calledWithMatch /\d{1,2}\:\d{1,2} [AP]M \(30 minutes\)\: 43 @ 2nd Ave and Main St/i
 
           scope.done()
 
