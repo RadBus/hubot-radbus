@@ -175,7 +175,7 @@ module.exports = (robot) ->
                  "2. Use the 'bus token {your-token}' to tell me what your token is."
 
       else
-        msg.send "Hey @#{userName}, give me a moment to look up those bus depatures..."
+        msg.send "Hey @#{userName}, give me a moment to look up those bus departures..."
 
         chain = ensureAuthToken(robot, msg, userData, logPrefix).then ->
           console.log chalk.blue("#{logPrefix} Getting user's departures...")
